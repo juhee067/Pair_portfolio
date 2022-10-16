@@ -1,0 +1,26 @@
+* {
+  outline: 1px solid #f00;
+}
+/* side_menu */
+.content_row #colum_left .side_menu {
+  background: #333333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 100vh;
+  padding: 60px 10px;
+}
+
+.content_row #colum_left .side_menu ul li {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.content_row #colum_left .side_menu ul li span {
+  color: #818181;
+  font-size: 40px;
+}
+.content_row #colum_left .side_menu ul li span:hover {
+  color: #fff;
+}
