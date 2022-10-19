@@ -1,24 +1,18 @@
-// side_menu Click
-const nonClick = document.querySelector(".gray");
-
-function handleClick(event) {
-  // div에서 모든 "click" 클래스 제거
-  nonClick.forEach((e) => {
-    e.classList.remove("click");
-  });
-  // 클릭한 div만 "click"클래스 추가
-  event.target.classList.add("click");
-}
-
-nonClick.forEach((e) => {
-  e.addEventListener("click", handleClick);
-});
-
-// slick slider
 $(function () {
   $(".slick_slider").slick({
+    asNavFor: '.alert_slick',
     arrows: false,
     autoplay: true,
-
-  })
-})
+    vertical: true,
+    autoplaySpeed: 1500,
+  });
+});
+$(function () {
+  $(".alert_slick").slick({
+    asNavFor: '.slick_slider',
+    arrows: false,
+    autoplay: false,
+    vertical: true,
+    autoplaySpeed: 1500,
+  });
+});

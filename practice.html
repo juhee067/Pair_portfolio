@@ -6,52 +6,181 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      .container {
-        display: grid;
-        grid-template-columns: 20px 200px;
-        justify-content: center;
-        justify-items: center;
-        align-content: stretch;
-        gap: 20px 20px;
-      }
 
-      .box {
-        width: 120px;
-        height: 120px;
-        border: 0;
-      }
+/*align-content: flex-start | flex-end | center | space-between | space-around | stretch;*/
 
-      .non-click {
-        background-color: gold;
-      }
+.flex-container.align-content-start {
+  -webkit-align-content: flex-start;
+  -ms-flex-line-pack: start;
+  align-content: flex-start;
+}
 
-      .click {
-        background-color: orchid;
-      }
+.flex-container.align-content-end {
+  -webkit-align-content: flex-end;
+  -ms-flex-line-pack: end;
+  align-content: flex-end;
+}
+
+.flex-container.align-content-center {
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+}
+
+.flex-container.align-content-space-between {
+  -webkit-align-content: space-between;
+  -ms-flex-line-pack: justify;
+  align-content: space-between;
+}
+
+.flex-container.align-content-space-around {
+  -webkit-align-content: space-around;
+  -ms-flex-line-pack: justify;
+  /*distribute;*/
+  align-content: space-around;
+}
+
+.flex-container.align-content-stretch {
+  -webkit-align-content: stretch;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+}
+
+
+
+html,body{ width:100%; min-height:100%; margin:0; padding:0; color:#ddd; font-size:14px; font-family:Verdana, Geneva, sans-serif;background-color:#333;}
+*{
+	box-sizing : border-box; 
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale; 
+}
+
+.flex-container {
+ border: 1px solid #555;
+ display : -webkit-flex;
+ display : -ms-flexbox;
+ display : flex;
+ padding:20px;
+ width:100%; 
+ }
+.item{
+	margin:0; 
+
+	padding:10px; 
+	width:20%; 
+	height:100px;
+	-webkit-align-items: center;
+	-ms-flex-align:center;
+	align-items: center;
+	}
+.item p{width:100%; text-align:center; color:#fff;}
+
+/*#wrap .item{ height:auto;}*/
+
+#alignContent{flex-wrap:wrap; height:600px;}
+#alignContent .item{ height:auto;} 
+
+
+
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="box non-click" id="first">1번</div>
-      <div class="box non-click" id="second">2번</div>
-      <div class="box non-click" id="third">3번</div>
-      <div class="box non-click" id="fourth">4번</div>
-    </div>
-    <script>
-      const nonClick = document.querySelectorAll(".non-click");
 
-      function handleClick(event) {
-        // div에서 모든 "click" 클래스 제거
-        nonClick.forEach((e) => {
-          e.classList.remove("click");
-        });
-        // 클릭한 div만 "click"클래스 추가
-        event.target.classList.add("click");
-      }
+<div class="flex-container" id="alignContent">
 
-      nonClick.forEach((e) => {
-        e.addEventListener("click", handleClick);
-      });
-    </script>
+<div class="item" data-color="1bbc9d"><p>1</p></div>
+<div class="item" data-color="2fcc71"><p>2</p></div>
+<div class="item" data-color="3598dc"><p>3</p></div>
+<div class="item" data-color="9c59b8"><p>4</p></div>
+<div class="item" data-color="34495e"><p>5</p></div>
+<div class="item" data-color="16a086"><p>6</p></div>
+<div class="item" data-color="27ae61"><p>7</p></div>
+<div class="item" data-color="2a80b9"><p>8</p></div>
+<div class="item" data-color="8f44ad"><p>9</p></div>
+<div class="item" data-color="2d3e50"><p>10</p></div>
+<div class="item" data-color="f1c40f"><p>11</p></div>
+<div class="item" data-color="e77e23"><p>12</p></div>
+
+
+</div>
+
+
+
+</div>
+<script>
+  function changeFlex(e, t) {
+  for (var n = document.querySelectorAll("." + e), l = document.querySelector("#" + t), r = 0; r < n.length; r++) n[r].addEventListener("change", function() {
+    var e = this.value;
+    l.setAttribute("class", "flex-container " + e)
+  }, !1)
+}
+
+function changeItemFlex(e, t) {
+  for (var n = document.querySelectorAll("." + e), l = document.querySelector("#" + t), r = 0; r < n.length; r++) n[r].addEventListener("change", function() {
+    var e = this.value;
+    l.setAttribute("class", "item " + e)
+  }, !1)
+}
+
+function changeFlexBasis(e, t) {
+  var n = isNaN(e.value) ? 0 : e.value;
+  console.log("B: " + n), document.querySelector("#" + t).style.WebkitFlexBasis = n + "%", document.querySelector("#" + t).style.flexBasis = n + "%"
+}
+
+function changeFlexGrow(e, t) {
+  var n = isNaN(e.value) ? 0 : e.value;
+  console.log("G: " + n), document.querySelector("#" + t).style.WebkitFlexGrow = n, document.querySelector("#" + t).style.flexGrow = n
+}
+
+function changeFlexShrink(e, t) {
+  var n = isNaN(e.value) ? 0 : e.value;
+  console.log("S: " + n), document.querySelector("#" + t).style.WebkitFlexShrink = n, document.querySelector("#" + t).style.flexShrink = n
+}
+
+function changeFlexOrder(e, t) {
+  var n = isNaN(e.value) ? 0 : e.value;
+  console.log("O: " + n), document.querySelector("#" + t).style.WebkitOrder = n, document.querySelector("#" + t).style.order = n
+}
+
+function changeAll(e, t, n, l) {
+  changeFlexBasis(e, l), changeFlexGrow(t, l), changeFlexShrink(n, l)
+}
+for (var items = document.querySelectorAll(".item"), i = 0; i < items.length; i++)
+  if (items[i].hasAttribute("data-color")) {
+    var color = items[i].getAttribute("data-color");
+    items[i].style.backgroundColor = "#" + color
+  }
+for (var flexO = document.querySelectorAll(".flex-order"), o = 0; o < flexO.length; o++) flexO[o].addEventListener("change", function() {
+  changeFlexOrder(this, "order" + this.id)
+}, !1);
+changeFlex("flex-direction", "direction"), changeFlex("flex-wrap", "wrap"), changeFlex("flex-align-items", "align"), changeFlex("justify-content", "justify"), changeFlex("align-content", "alignContent"), changeItemFlex("align-self", "alignSelf");
+for (var flexGrow = document.querySelectorAll(".flex-grow"), i = 0; i < flexGrow.length; i++) flexGrow[i].addEventListener("change", function() {
+  var e = "item" + this.id;
+  changeFlexGrow(this, e)
+});
+for (var flexShrink = document.querySelectorAll(".flex-shrink"), j = 0; j < flexShrink.length; j++) flexShrink[j].addEventListener("change", function() {
+  var e = "item" + this.id;
+  changeFlexShrink(this, e)
+});
+var B1 = document.querySelector("#B1"),
+  G1 = document.querySelector("#G1"),
+  S1 = document.querySelector("#S1"),
+  B2 = document.querySelector("#B2"),
+  G2 = document.querySelector("#G2"),
+  S2 = document.querySelector("#S2");
+B1.addEventListener("change", function() {
+  changeAll(B1, G1, S1, "item1")
+}), G1.addEventListener("change", function() {
+  changeAll(B1, G1, S1, "item1")
+}), S1.addEventListener("change", function() {
+  changeAll(B1, G1, S1, "item1")
+}), B2.addEventListener("change", function() {
+  changeAll(B2, G2, S2, "item2")
+}), G2.addEventListener("change", function() {
+  changeAll(B2, G2, S2, "item2")
+}), S2.addEventListener("change", function() {
+  changeAll(B2, G2, S2, "item2")
+});
+</script>
   </body>
 </html>
